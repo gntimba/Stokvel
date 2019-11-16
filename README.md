@@ -1,0 +1,3 @@
+# Stokvel
+
+Node js backend
