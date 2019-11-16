@@ -1,5 +1,5 @@
 var express = require('express');
-
+require('dotenv').config()
 var app = express();
 var multer = require('multer')
 var constants = require('constants');
@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 var mongoose = require('mongoose');
 var configDB = require('./config/database.js');
 //configuration ===============================================================
-mongoose.connect(configDB.url,{ useNewUrlParser: true,useUnifiedTopology: true }); // connect to our database
+mongoose.connect(configDB.local,{ useNewUrlParser: true,useUnifiedTopology: true }); // connect to our database
 
 
 require('./config/passport')(passport); // pass passport for configuration

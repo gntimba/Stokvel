@@ -1,6 +1,9 @@
 {
   "name": "Stokvel",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "pm2 start app.js"
+  },
   "private": true,
   "dependencies": {
     "async": "latest",
@@ -12,14 +15,18 @@
     "connect": "latest",
     "connect-flash": "latest",
     "cookie-parser": "~1.3.5",
+    "crypto-js": "^3.1.9-1",
     "dateformat": "latest",
     "debug": "~2.2.0",
+    "dotenv": "^8.2.0",
     "ejs": "~2.3.3",
     "express": "^4.17.1",
     "express-mailer": "^0.3.0",
     "express-session": "latest",
     "fs-extra": "latest",
     "http-proxy": "latest",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
     "md5": "latest",
     "mime": "latest",
     "mongoose": "latest",
@@ -32,10 +39,14 @@
     "nodemon": "latest",
     "numeral": "latest",
     "passport": "latest",
+    "passport-jwt": "^4.0.0",
     "passport-local": "latest",
     "pm2": "latest",
+    "random-number": "0.0.9",
+    "randomstring": "^1.1.5",
     "request": "latest",
     "serve-favicon": "^2.5.0",
+    "shortid": "^2.2.14",
     "simple-encryptor": "latest",
     "underscore": "latest"
   }
