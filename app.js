@@ -1,6 +1,8 @@
 var express = require('express');
 require('dotenv').config()
+var cors = require('cors')
 var app = express();
+app.use(cors())
 var multer = require('multer')
 var constants = require('constants');
 var constant = require('./config/constants');
