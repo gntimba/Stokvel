@@ -19,8 +19,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var bodyParser = require('body-parser');
-var dateFormat = require('dateformat');
-var now = new Date();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -62,7 +60,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 // routes ======================================================================
 require('./config/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
-
+//app.use('/api',passport.authenticate('jwt', { session: false}),require('./config/routes.js'))
 
 //launch ======================================================================
 app.listen(port);

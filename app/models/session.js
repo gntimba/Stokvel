@@ -5,11 +5,11 @@ var mongoose = require('mongoose');
 
 //define the schema for our user model
 var sessionSchema = mongoose.Schema({	
-	userID: String,
+	user_ID: String,
 	token: String,
 	created_date: { type: Date, default: Date.now },
 	updated_date: { type: Date, default: Date.now },
-
+	active: { type: Boolean, default: true},
 });
 
 

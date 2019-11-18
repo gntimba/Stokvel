@@ -27,7 +27,7 @@ exports.signup = function (req, res) {
 
 			newUser.mail = data.email;
 			newUser.name = data.name;
-			newUser.status = 'active'; //inactive for email actiavators
+			newUser.active = true;
 			newUser.active_hash = hash;
 			// save the user
 			newUser.save(function (err) {
@@ -48,6 +48,11 @@ exports.signup = function (req, res) {
 	});
 
 }
+exports.users=function (req,res) {
+	res.json(req.user)
+	//console.log(req.user)
+	
+}
 
 exports.login = function (req, res) {
 	let data = req.body;
@@ -59,10 +64,12 @@ exports.login = function (req, res) {
 						id: user._id,
 						role: user.role_id
 					}
-				var token = jwt.sign(payload,process.env.secret,{expiresIn:60*5}); //made it that the token expires in 5 minutes
+				var token = jwt.sign(payload,process.env.secret,{expiresIn:6000*5}); //made it that the token expires in 5 minutes
 				webtoken = new Webtoken();
-				Webtoken.userID=user._id;
+				//Webtoken.userID=user._id;
 				webtoken.token=token;
+				Webtoken.user_ID=user._id;
+			//	console.log(user._id)
 				webtoken.save(function (err) {
 					if (err)
 						throw err;

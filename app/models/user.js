@@ -8,7 +8,7 @@ var bcrypt   = require('bcrypt');
 var userSchema = mongoose.Schema({	
 	name: String,
 	mail: String,
-	status: String,
+	active: { type: Boolean, default: true},
 	created_date: { type: Date, default: Date.now },
 	updated_date: { type: Date, default: Date.now },
 	active_hash: String,	

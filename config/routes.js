@@ -4,11 +4,13 @@ var home = require('../app/controllers/user');
 
 module.exports = function (app, passport) {
 
-   // app.get('/login', home.login);
+   
     app.post('/signup', home.signup);
 
 
     app.post('/auth', home.login);
+
+    app.get('/test',passport.authenticate('jwt', { session: false}),home.users);
    // app.get('/home', home.loggedIn, home.home);//home
 
     // app.post('/signup', passport.authenticate('local-signup', {
