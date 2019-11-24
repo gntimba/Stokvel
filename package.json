@@ -4,6 +4,7 @@
   "scripts": {
     "start": "pm2 start app.js"
   },
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "private": true,
   "dependencies": {
     "async": "latest",

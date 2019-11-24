@@ -10,7 +10,7 @@ module.exports = function (app, passport) {
 
     app.post('/auth', home.login);
 
-    app.get('/test',passport.authenticate('jwt', { session: false}),home.users);
+    app.get('/profile',passport.authenticate('jwt', { session: false}),home.users);
    // app.get('/home', home.loggedIn, home.home);//home
 
     // app.post('/signup', passport.authenticate('local-signup', {

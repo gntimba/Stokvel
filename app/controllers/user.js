@@ -49,7 +49,20 @@ exports.signup = function (req, res) {
 
 }
 exports.users=function (req,res) {
-	res.json(req.user)
+
+	let data={
+		"role_id": req.user.role_id,
+		"_id": req.user._id,
+		"dob": req.user.dob,
+		"lastName": req.user.lastName,
+		"firstName": req.user.firstName,
+		"picture": "http://localhost:8042/pro/"+req.user.picture,
+		"created_date": req.user.created_date,
+		"mail": req.user.mail,
+	}
+	res.json(data)
+
+	
 	//console.log(req.user)
 	
 }
@@ -74,7 +87,7 @@ exports.login = function (req, res) {
 					if (err)
 						throw err;
 	
-						res.json({message:"ok",token:token,code:200})
+						res.json({id:payload.id,message:"ok",token:token,code:200})
 	
 					//	req.session.destroy();
 	
