@@ -26,9 +26,12 @@ exports.signup = function (req, res) {
 
 
 			newUser.mail = data.email;
-			newUser.name = data.name;
 			newUser.active = true;
 			newUser.active_hash = hash;
+			newUser.lastName=data.lastName;
+			newUser.firstName=data.firstName
+			newUser.picture=data.picture
+			newUser.dob=data.dob;
 			// save the user
 			newUser.save(function (err) {
 				if (err)
