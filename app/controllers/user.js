@@ -7,6 +7,7 @@ var jwt = require('jsonwebtoken');
 
 exports.signup = function (req, res) {
 	let data = req.body
+//	console.log(data)
 	User.findOne({ mail: data.email }, function (err, user) {
 		// if there are any errors, return the error
 		if (err)
@@ -28,18 +29,17 @@ exports.signup = function (req, res) {
 			newUser.mail = data.email;
 			newUser.active = true;
 			newUser.active_hash = hash;
-			newUser.lastName=data.lastName;
-			newUser.firstName=data.firstName
-			newUser.picture=data.picture
-			newUser.dob=data.dob;
+			newUser.lastName=data.lastname;
+			newUser.firstName=data.firstname
+			newUser.picture="default.jpg"
+			newUser.dob=data.DOB;
+			newUser.phoneNumber=data.phoneNumber;
 			// save the user
 			newUser.save(function (err) {
 				if (err)
 					throw err;
 
 				res.status(201).json({ "message": "Account Created Successfully", "code": 201 })
-
-				//	req.session.destroy();
 
 			});
 

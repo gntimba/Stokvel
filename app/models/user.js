@@ -11,6 +11,7 @@ var userSchema = mongoose.Schema({
 	picture:String,
 	dob:Date,
 	mail: String,
+	phoneNumber:String,
 	active: { type: Boolean, default: true},
 	created_date: { type: Date, default: Date.now },
 	updated_date: { type: Date, default: Date.now },
