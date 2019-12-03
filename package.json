@@ -2,9 +2,13 @@
   "name": "Stokvel",
   "version": "0.0.1",
   "scripts": {
-    "start": "pm2 start app.js"
+    "start": "pm2 start app.js",
+    "stop": "pm2 stop all",
+    "restart": "pm2 restart all"
   },
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "private": true,
   "dependencies": {
     "async": "latest",
