@@ -63,6 +63,7 @@ exports.users = function (req, res) {
 		"picture": "http://localhost:8042/pro/" + req.user.picture,
 		"created_date": req.user.created_date,
 		"mail": req.user.mail,
+		phoneNumber:req.user.phoneNumber,
 		address:req.user.address,
 		city:req.user.city,
 		postal:req.user.postal,
@@ -81,6 +82,29 @@ exports.logout = function (req, res) {
 			res.status(200).json({ "message": "logout success", "code": 201 })
 		} else {
 			res.status(500).json({ "message": "token not available", "code": 500 })
+		}
+	}).catch((err) => {
+		res.status(500).json(err)
+	})
+}
+exports.update= function (req, res){
+	let data =req.body;
+	let update={
+		address:data.address,
+		city:data.city,
+		dob:data.dob,
+		phoneNumber:data.phoneNumber,
+		firstName:data.firstName,
+		lastName:data.lastName,
+		postal:data.postal,
+		suburb:data.suburb
+	}
+
+	User.findOneAndUpdate({ _id: req.user._id  }, { $set: update }, { new: true }).then((docs) => {
+		if (docs) {
+			res.status(200).json({ "message": "Profile Updated", "code": 201 })
+		} else {
+			res.status(404).json({ "message": "User not available", "code": 404 })
 		}
 	}).catch((err) => {
 		res.status(500).json(err)
