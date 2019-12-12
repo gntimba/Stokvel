@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 
 //define the schema for our user model
 var sessionSchema = mongoose.Schema({	
-	user_ID: String,
+	user_ID: mongoose.Schema.Types.ObjectId,
 	token: String,
 	created_date: { type: Date, default: Date.now },
 	updated_date: { type: Date, default: Date.now },

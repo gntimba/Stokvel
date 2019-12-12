@@ -13,6 +13,8 @@ module.exports = function (app, passport) {
     app.get('/profile',passport.authenticate('jwt', { session: false}),home.users);
     app.get('/logout',passport.authenticate('jwt', { session: false}),home.logout);
     app.post('/update',passport.authenticate('jwt', { session: false}),home.update);
+    app.get('/in',passport.authenticate('jwt', { session: false}),home.testTate);
+    app.get('/statement',passport.authenticate('jwt', { session: false}),home.getStatement);
    // app.get('/home', home.loggedIn, home.home);//home
 
     // app.post('/signup', passport.authenticate('local-signup', {

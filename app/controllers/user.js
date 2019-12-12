@@ -4,7 +4,8 @@ var dateFormat = require('dateformat');
 var User = require('../models/user');
 var Webtoken = require('../models/session');
 var jwt = require('jsonwebtoken');
-var ObjectId = require('mongoose').Types.ObjectId; 
+var ObjectId = require('mongoose').Types.ObjectId;
+var transact = require('../util/transact');
 
 exports.signup = function (req, res) {
 	let data = req.body
@@ -63,11 +64,11 @@ exports.users = function (req, res) {
 		"picture": "http://localhost:8042/pro/" + req.user.picture,
 		"created_date": req.user.created_date,
 		"mail": req.user.mail,
-		phoneNumber:req.user.phoneNumber,
-		address:req.user.address,
-		city:req.user.city,
-		postal:req.user.postal,
-		suburb:req.user.suburb,
+		phoneNumber: req.user.phoneNumber,
+		address: req.user.address,
+		city: req.user.city,
+		postal: req.user.postal,
+		suburb: req.user.suburb,
 	}
 	res.json(data)
 
@@ -77,7 +78,7 @@ exports.users = function (req, res) {
 }
 exports.logout = function (req, res) {
 	let tokenReq = req.headers.authorization.replace('Bearer ', '')
-	Webtoken.findOneAndUpdate({ token: tokenReq  }, { $set: { active: false} }, { new: true }).then((docs) => {
+	Webtoken.findOneAndUpdate({ token: tokenReq }, { $set: { active: false } }, { new: true }).then((docs) => {
 		if (docs) {
 			res.status(200).json({ "message": "logout success", "code": 201 })
 		} else {
@@ -87,20 +88,20 @@ exports.logout = function (req, res) {
 		res.status(500).json(err)
 	})
 }
-exports.update= function (req, res){
-	let data =req.body;
-	let update={
-		address:data.address,
-		city:data.city,
-		dob:data.dob,
-		phoneNumber:data.phoneNumber,
-		firstName:data.firstName,
-		lastName:data.lastName,
-		postal:data.postal,
-		suburb:data.suburb
+exports.update = function (req, res) {
+	let data = req.body;
+	let update = {
+		address: data.address,
+		city: data.city,
+		dob: data.dob,
+		phoneNumber: data.phoneNumber,
+		firstName: data.firstName,
+		lastName: data.lastName,
+		postal: data.postal,
+		suburb: data.suburb
 	}
 
-	User.findOneAndUpdate({ _id: req.user._id  }, { $set: update }, { new: true }).then((docs) => {
+	User.findOneAndUpdate({ _id: req.user._id }, { $set: update }, { new: true }).then((docs) => {
 		if (docs) {
 			res.status(200).json({ "message": "Profile Updated", "code": 201 })
 		} else {
@@ -145,6 +146,23 @@ exports.login = function (req, res) {
 			res.status(404).json({ "message": "Account Not found", "code": 404 })
 		}
 	})
+
+}
+exports.testTate = function (req, res) {
+	transact.save(req.user._id, "deposit from capitec acoount 22255", "in", 102.25).then(e => {
+		res.status(201).send("im working")
+	}
+	).catch(e => {
+		res.status(404).send("im bad")
+	})
+
+
+}
+
+exports.getStatement = function (req, res) {
+transact.getStatement(req.user._id).then( statement =>{
+	res.json(statement)
+}).catch(e => res.status(404).json(e))
 
 }
 
